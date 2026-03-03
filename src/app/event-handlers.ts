@@ -780,7 +780,8 @@ export class EventHandlerManager implements AppModule {
 
       const bottomGrid = document.getElementById('mapBottomGrid');
       const isEmpty = !bottomGrid || bottomGrid.children.length === 0;
-      const headerHeight = 60;
+      const header = document.querySelector('.header') as HTMLElement | null;
+      const headerHeight = header ? header.offsetHeight : 0;
       const totalAvailable = window.innerHeight - headerHeight;
 
       if (isEmpty) {
