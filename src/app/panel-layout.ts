@@ -47,6 +47,7 @@ import { t } from '@/services/i18n';
 import { trackCriticalBannerAction } from '@/services/analytics';
 
 const PRIORITY_PANEL_KEYS = [
+  'live-news',
   'etf-flows',
   'stablecoins',
   'commodities',
