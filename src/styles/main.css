@@ -1458,9 +1458,9 @@ body.panel-resize-active iframe {
 }
 
 .panel-data-badge.live {
-  color: var(--status-live);
-  border-color: rgba(86, 217, 130, 0.45);
-  background: rgba(86, 217, 130, 0.12);
+  color: rgb(var(--map-selection-rgb));
+  border-color: rgba(var(--map-selection-rgb), 0.45);
+  background: rgba(var(--map-selection-rgb), 0.12);
 }
 
 .panel-data-badge.cached {
@@ -1724,8 +1724,8 @@ body.panel-resize-active iframe {
 }
 
 .live-channel-btn.active {
-  background: var(--red);
-  border-color: var(--red);
+  background: rgb(var(--map-selection-rgb));
+  border-color: rgb(var(--map-selection-rgb));
   color: white;
 }
 
@@ -3929,10 +3929,10 @@ body.playback-mode .status-dot {
   font-weight: bold;
   text-transform: uppercase;
   letter-spacing: 1px;
-  color: var(--green);
+  color: rgb(var(--map-selection-rgb));
   margin-bottom: 6px;
   padding-left: 4px;
-  border-left: 2px solid var(--green);
+  border-left: 2px solid rgb(var(--map-selection-rgb));
 }
 
 .layer-help-item {
@@ -5639,7 +5639,7 @@ a.prediction-link:hover {
   height: 64px;
   margin-bottom: 16px;
   position: relative;
-  border: 2px solid rgba(68, 255, 136, 0.3);
+  border: 2px solid rgba(var(--map-selection-rgb), 0.3);
   border-radius: 50%;
   overflow: hidden;
 }
@@ -5650,7 +5650,7 @@ a.prediction-link:hover {
   left: 50%;
   width: 50%;
   height: 2px;
-  background: linear-gradient(90deg, transparent, var(--status-live));
+  background: linear-gradient(90deg, transparent, rgb(var(--map-selection-rgb)));
   transform-origin: left center;
   animation: panel-radar-sweep 2s linear infinite;
 }
@@ -5662,9 +5662,9 @@ a.prediction-link:hover {
   width: 6px;
   height: 6px;
   margin: -3px;
-  background: var(--status-live);
+  background: rgb(var(--map-selection-rgb));
   border-radius: 50%;
-  box-shadow: 0 0 10px var(--status-live);
+  box-shadow: 0 0 10px rgba(var(--map-selection-rgb), 0.85);
 }
 
 @keyframes panel-radar-sweep {
