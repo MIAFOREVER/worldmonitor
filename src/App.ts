@@ -102,11 +102,22 @@ export class App {
         STORAGE_KEYS.panels,
         DEFAULT_PANELS
       );
+      let panelSettingsChanged = false;
+      for (const key of Object.keys(panelSettings)) {
+        if (key !== 'runtime-config' && !(key in DEFAULT_PANELS)) {
+          delete panelSettings[key];
+          panelSettingsChanged = true;
+        }
+      }
       // Merge in any new panels that didn't exist when settings were saved
       for (const [key, config] of Object.entries(DEFAULT_PANELS)) {
         if (!(key in panelSettings)) {
           panelSettings[key] = { ...config };
+          panelSettingsChanged = true;
         }
+      }
+      if (panelSettingsChanged) {
+        saveToStorage(STORAGE_KEYS.panels, panelSettings);
       }
       console.log('[App] Loaded panel settings from storage:', Object.entries(panelSettings).filter(([_, v]) => !v.enabled).map(([k]) => k));
 

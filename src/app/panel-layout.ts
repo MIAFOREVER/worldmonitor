@@ -7,7 +7,6 @@ import {
   MarketPanel,
   HeatmapPanel,
   CommoditiesPanel,
-  CryptoPanel,
   PredictionPanel,
   EconomicPanel,
   LiveNewsPanel,
@@ -19,16 +18,9 @@ import {
   MacroSignalsPanel,
   ETFFlowsPanel,
   StablecoinPanel,
-  UcdpEventsPanel,
-  DisplacementPanel,
-  ClimateAnomalyPanel,
-  PopulationExposurePanel,
   InvestmentsPanel,
   TradePolicyPanel,
   SupplyChainPanel,
-  SecurityAdvisoriesPanel,
-  OrefSirensPanel,
-  TelegramIntelPanel,
   GulfEconomiesPanel,
   WorldClockPanel,
 } from '@/components';
@@ -63,14 +55,12 @@ export interface PanelLayoutCallbacks {
 
 export class PanelLayoutManager implements AppModule {
   private ctx: AppContext;
-  private callbacks: PanelLayoutCallbacks;
   private panelDragCleanupHandlers: Array<() => void> = [];
   private criticalBannerEl: HTMLElement | null = null;
   private readonly applyTimeRangeFilterDebounced: (() => void) & { cancel(): void };
 
-  constructor(ctx: AppContext, callbacks: PanelLayoutCallbacks) {
+  constructor(ctx: AppContext, _callbacks: PanelLayoutCallbacks) {
     this.ctx = ctx;
-    this.callbacks = callbacks;
     this.applyTimeRangeFilterDebounced = debounce(() => {
       this.applyTimeRangeFilterToNewsPanels();
     }, 120);
@@ -299,9 +289,6 @@ export class PanelLayoutManager implements AppModule {
     this.ctx.newsPanels['intel'] = intelPanel;
     this.ctx.panels['intel'] = intelPanel;
 
-    const cryptoPanel = new CryptoPanel();
-    this.ctx.panels['crypto'] = cryptoPanel;
-
     const middleeastPanel = new NewsPanel('middleeast', t('panels.middleeast'));
     this.attachRelatedAssetHandlers(middleeastPanel);
     this.ctx.newsPanels['middleeast'] = middleeastPanel;
@@ -420,6 +407,7 @@ export class PanelLayoutManager implements AppModule {
 
     for (const key of Object.keys(FEEDS)) {
       if (key === 'layoffs') continue;
+      if (key === 'crypto') continue;
       if (this.ctx.newsPanels[key]) continue;
       if (!Array.isArray((FEEDS as Record<string, unknown>)[key])) continue;
       const panelKey = this.ctx.panels[key] && !this.ctx.newsPanels[key] ? `${key}-news` : key;
@@ -451,38 +439,6 @@ export class PanelLayoutManager implements AppModule {
         });
       }
 
-      const ucdpEventsPanel = new UcdpEventsPanel();
-      ucdpEventsPanel.setEventClickHandler((lat, lon) => {
-        this.ctx.map?.setCenter(lat, lon, 5);
-      });
-      this.ctx.panels['ucdp-events'] = ucdpEventsPanel;
-
-      const displacementPanel = new DisplacementPanel();
-      displacementPanel.setCountryClickHandler((lat, lon) => {
-        this.ctx.map?.setCenter(lat, lon, 4);
-      });
-      this.ctx.panels['displacement'] = displacementPanel;
-
-      const climatePanel = new ClimateAnomalyPanel();
-      climatePanel.setZoneClickHandler((lat, lon) => {
-        this.ctx.map?.setCenter(lat, lon, 4);
-      });
-      this.ctx.panels['climate'] = climatePanel;
-
-      const populationExposurePanel = new PopulationExposurePanel();
-      this.ctx.panels['population-exposure'] = populationExposurePanel;
-
-      const securityAdvisoriesPanel = new SecurityAdvisoriesPanel();
-      securityAdvisoriesPanel.setRefreshHandler(() => {
-        void this.callbacks.loadSecurityAdvisories?.();
-      });
-      this.ctx.panels['security-advisories'] = securityAdvisoriesPanel;
-
-      const orefSirensPanel = new OrefSirensPanel();
-      this.ctx.panels['oref-sirens'] = orefSirensPanel;
-
-      const telegramIntelPanel = new TelegramIntelPanel();
-      this.ctx.panels['telegram-intel'] = telegramIntelPanel;
     }
 
     if (SITE_VARIANT === 'finance') {

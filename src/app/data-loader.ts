@@ -1054,11 +1054,11 @@ export class DataLoaderManager implements AppModule {
     try {
       let crypto = await fetchCrypto();
       if (crypto.length === 0) {
-        (this.ctx.panels['crypto'] as CryptoPanel).showRetrying();
+        (this.ctx.panels['crypto'] as CryptoPanel | undefined)?.showRetrying();
         await new Promise(r => setTimeout(r, 20_000));
         crypto = await fetchCrypto();
       }
-      (this.ctx.panels['crypto'] as CryptoPanel).renderCrypto(crypto);
+      (this.ctx.panels['crypto'] as CryptoPanel | undefined)?.renderCrypto(crypto);
       this.ctx.statusPanel?.updateApi('CoinGecko', { status: crypto.length > 0 ? 'ok' : 'error' });
     } catch {
       this.ctx.statusPanel?.updateApi('CoinGecko', { status: 'error' });

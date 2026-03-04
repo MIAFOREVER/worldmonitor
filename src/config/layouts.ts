@@ -13,8 +13,7 @@ const FULL_LAYOUTS: LayoutPreset[] = [
     labelKey: 'layouts.intelligenceAnalyst',
     icon: '🔍',
     panelKeys: [
-      'map', 'live-news', 'insights', 'intel', 'telegram-intel',
-      'displacement', 'oref-sirens',
+      'map', 'live-news', 'insights', 'intel',
     ],
   },
   {
@@ -22,7 +21,7 @@ const FULL_LAYOUTS: LayoutPreset[] = [
     labelKey: 'layouts.marketWatch',
     icon: '📈',
     panelKeys: [
-      'map', 'live-news', 'insights', 'markets', 'commodities', 'crypto',
+      'map', 'live-news', 'insights', 'markets', 'commodities',
       'economic', 'macro-signals', 'etf-flows', 'stablecoins',
       'gulf-economies', 'heatmap', 'polymarket', 'finance',
     ],
@@ -78,7 +77,7 @@ const FINANCE_LAYOUTS: LayoutPreset[] = [
     icon: '📊',
     panelKeys: [
       'map', 'live-news', 'insights', 'markets', 'markets-news', 'forex',
-      'bonds', 'commodities', 'crypto', 'centralbanks', 'economic',
+      'bonds', 'commodities', 'centralbanks', 'economic',
       'heatmap', 'macro-signals',
     ],
   },
@@ -87,7 +86,7 @@ const FINANCE_LAYOUTS: LayoutPreset[] = [
     labelKey: 'layouts.cryptoFocus',
     icon: '₿',
     panelKeys: [
-      'map', 'live-news', 'insights', 'crypto', 'crypto-news', 'etf-flows',
+      'map', 'live-news', 'insights', 'etf-flows',
       'stablecoins', 'fintech', 'markets', 'macro-signals',
     ],
   },

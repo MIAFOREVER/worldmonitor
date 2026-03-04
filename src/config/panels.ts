@@ -30,21 +30,13 @@ const FULL_PANELS: Record<string, PanelConfig> = {
   'supply-chain': { name: 'Supply Chain', enabled: true, priority: 1 },
   finance: { name: 'Financial', enabled: true, priority: 1 },
   tech: { name: 'Technology', enabled: true, priority: 2 },
-  crypto: { name: 'Crypto', enabled: true, priority: 2 },
   heatmap: { name: 'Sector Heatmap', enabled: true, priority: 2 },
   ai: { name: 'AI/ML', enabled: true, priority: 2 },
   'macro-signals': { name: 'Market Radar', enabled: true, priority: 2 },
   'gulf-economies': { name: 'Gulf Economies', enabled: false, priority: 2 },
   'etf-flows': { name: 'BTC ETF Tracker', enabled: true, priority: 2 },
   stablecoins: { name: 'Stablecoins', enabled: true, priority: 2 },
-  'ucdp-events': { name: 'UCDP Conflict Events', enabled: true, priority: 2 },
   giving: { name: 'Global Giving', enabled: false, priority: 2 },
-  displacement: { name: 'UNHCR Displacement', enabled: true, priority: 2 },
-  climate: { name: 'Climate Anomalies', enabled: true, priority: 2 },
-  'population-exposure': { name: 'Population Exposure', enabled: true, priority: 2 },
-  'security-advisories': { name: 'Security Advisories', enabled: true, priority: 2 },
-  'oref-sirens': { name: 'Israel Sirens', enabled: true, priority: 2 },
-  'telegram-intel': { name: 'Telegram Intel', enabled: true, priority: 2 },
   'world-clock': { name: 'World Clock', enabled: true, priority: 2 },
 };
 
@@ -169,7 +161,6 @@ const TECH_PANELS: Record<string, PanelConfig> = {
   regulation: { name: 'AI Regulation Dashboard', enabled: true, priority: 1 },
   markets: { name: 'Tech Stocks', enabled: true, priority: 2 },
   finance: { name: 'Financial News', enabled: true, priority: 2 },
-  crypto: { name: 'Crypto', enabled: true, priority: 2 },
   hardware: { name: 'Semiconductors & Hardware', enabled: true, priority: 2 },
   cloud: { name: 'Cloud & Infrastructure', enabled: true, priority: 2 },
   dev: { name: 'Developer Community', enabled: true, priority: 2 },
@@ -303,8 +294,6 @@ const FINANCE_PANELS: Record<string, PanelConfig> = {
   bonds: { name: 'Fixed Income', enabled: true, priority: 1 },
   commodities: { name: 'Commodities & Futures', enabled: true, priority: 1 },
   'commodities-news': { name: 'Commodities News', enabled: true, priority: 2 },
-  crypto: { name: 'Crypto & Digital Assets', enabled: true, priority: 1 },
-  'crypto-news': { name: 'Crypto News', enabled: true, priority: 2 },
   centralbanks: { name: 'Central Bank Watch', enabled: true, priority: 1 },
   economic: { name: 'Economic Data', enabled: true, priority: 1 },
   'trade-policy': { name: 'Trade Policy', enabled: true, priority: 1 },
@@ -585,7 +574,7 @@ export const PANEL_CATEGORY_MAP: Record<string, { labelKey: string; panelKeys: s
   // Full (geopolitical) variant
   intelligence: {
     labelKey: 'header.panelCatIntelligence',
-    panelKeys: ['intel', 'telegram-intel'],
+    panelKeys: ['intel'],
     variants: ['full'],
   },
   regionalNews: {
@@ -595,7 +584,7 @@ export const PANEL_CATEGORY_MAP: Record<string, { labelKey: string; panelKeys: s
   },
   marketsFinance: {
     labelKey: 'header.panelCatMarketsFinance',
-    panelKeys: ['commodities', 'markets', 'economic', 'trade-policy', 'supply-chain', 'finance', 'polymarket', 'macro-signals', 'gulf-economies', 'etf-flows', 'stablecoins', 'crypto', 'heatmap'],
+    panelKeys: ['commodities', 'markets', 'economic', 'trade-policy', 'supply-chain', 'finance', 'polymarket', 'macro-signals', 'gulf-economies', 'etf-flows', 'stablecoins', 'heatmap'],
     variants: ['full'],
   },
   topical: {
@@ -605,7 +594,7 @@ export const PANEL_CATEGORY_MAP: Record<string, { labelKey: string; panelKeys: s
   },
   dataTracking: {
     labelKey: 'header.panelCatDataTracking',
-    panelKeys: ['ucdp-events', 'displacement', 'climate', 'population-exposure', 'security-advisories', 'oref-sirens', 'world-clock'],
+    panelKeys: ['world-clock'],
     variants: ['full'],
   },
 
@@ -627,7 +616,7 @@ export const PANEL_CATEGORY_MAP: Record<string, { labelKey: string; panelKeys: s
   },
   techMarkets: {
     labelKey: 'header.panelCatMarkets',
-    panelKeys: ['markets', 'finance', 'crypto', 'economic', 'polymarket', 'macro-signals', 'etf-flows', 'stablecoins', 'world-clock'],
+    panelKeys: ['markets', 'finance', 'economic', 'polymarket', 'macro-signals', 'etf-flows', 'stablecoins', 'world-clock'],
     variants: ['tech'],
   },
 
@@ -649,7 +638,7 @@ export const PANEL_CATEGORY_MAP: Record<string, { labelKey: string; panelKeys: s
   },
   cryptoDigital: {
     labelKey: 'header.panelCatCryptoDigital',
-    panelKeys: ['crypto', 'crypto-news', 'etf-flows', 'stablecoins', 'fintech'],
+    panelKeys: ['etf-flows', 'stablecoins', 'fintech'],
     variants: ['finance'],
   },
   centralBanksEcon: {
