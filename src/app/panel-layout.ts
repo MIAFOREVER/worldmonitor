@@ -46,6 +46,16 @@ import {
 import { t } from '@/services/i18n';
 import { trackCriticalBannerAction } from '@/services/analytics';
 
+const PRIORITY_PANEL_KEYS = [
+  'etf-flows',
+  'stablecoins',
+  'commodities',
+  'polymarket',
+  'politics',
+  'thinktanks',
+  'economic',
+] as const;
+
 export interface PanelLayoutCallbacks {
   openCountryStory: (code: string, name: string) => void;
   loadAllData: () => Promise<void>;
@@ -563,6 +573,8 @@ export class PanelLayoutManager implements AppModule {
       }
     }
 
+    panelOrder = this.applyPriorityPanelOrder(panelOrder);
+
     panelOrder.forEach((key: string) => {
       const panel = this.ctx.panels[key];
       if (panel && !panel.getElement().parentElement) {
@@ -659,6 +671,13 @@ export class PanelLayoutManager implements AppModule {
     } catch {
       return [];
     }
+  }
+
+  private applyPriorityPanelOrder(order: string[]): string[] {
+    const pinned = PRIORITY_PANEL_KEYS.filter((key) => order.includes(key));
+    const pinnedSet = new Set<string>(pinned);
+    const rest = order.filter((key) => !pinnedSet.has(key));
+    return [...pinned, ...rest];
   }
 
   savePanelOrder(): void {
