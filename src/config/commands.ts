@@ -65,11 +65,7 @@ export const COMMANDS: Command[] = [
   // Panel navigation (matching actual DEFAULT_PANELS keys)
   { id: 'panel:live-news', keywords: ['news', 'live news', 'headlines'], label: 'Panel: Live News', icon: '\u{1F4F0}', category: 'panels' },
   { id: 'panel:intel', keywords: ['intel', 'intel feed'], label: 'Panel: Intel Feed', icon: '\u{1F50E}', category: 'panels' },
-  { id: 'panel:gdelt-intel', keywords: ['gdelt', 'intelligence feed'], label: 'Panel: Live Intelligence', icon: '\u{1F50D}', category: 'panels' },
   { id: 'panel:deduction', keywords: ['deduction', 'future', 'what if'], label: 'Panel: Deduct Situation', icon: '\u{1F9E0}', category: 'panels' },
-  { id: 'panel:cii', keywords: ['cii', 'instability', 'country risk'], label: 'Panel: Country Instability', icon: '\u{1F3AF}', category: 'panels' },
-  { id: 'panel:cascade', keywords: ['cascade', 'infrastructure cascade'], label: 'Panel: Infrastructure Cascade', icon: '\u{1F517}', category: 'panels' },
-  { id: 'panel:strategic-risk', keywords: ['risk', 'strategic risk', 'threat level'], label: 'Panel: Strategic Risk', icon: '\u26A0\uFE0F', category: 'panels' },
   { id: 'panel:politics', keywords: ['world news', 'politics', 'geopolitics'], label: 'Panel: World News', icon: '\u{1F30D}', category: 'panels' },
   { id: 'panel:us', keywords: ['united states', 'us news', 'america news'], label: 'Panel: United States', icon: '\u{1F1FA}\u{1F1F8}', category: 'panels' },
   { id: 'panel:europe', keywords: ['europe news', 'eu news'], label: 'Panel: Europe', icon: '\u{1F1EA}\u{1F1FA}', category: 'panels' },
@@ -94,7 +90,6 @@ export const COMMANDS: Command[] = [
   { id: 'panel:macro-signals', keywords: ['macro', 'macro signals', 'liquidity'], label: 'Panel: Market Radar', icon: '\u{1F4C9}', category: 'panels' },
   { id: 'panel:etf-flows', keywords: ['etf', 'etf flows', 'fund flows'], label: 'Panel: BTC ETF Tracker', icon: '\u{1F4B9}', category: 'panels' },
   { id: 'panel:stablecoins', keywords: ['stablecoins', 'usdt', 'usdc'], label: 'Panel: Stablecoins', icon: '\u{1FA99}', category: 'panels' },
-  { id: 'panel:monitors', keywords: ['monitors', 'my monitors', 'watchlist'], label: 'Panel: My Monitors', icon: '\u{1F4CB}', category: 'panels' },
 
   // View / settings
   { id: 'view:dark', keywords: ['dark', 'dark mode', 'night'], label: 'Switch to dark mode', icon: '\u{1F319}', category: 'view' },

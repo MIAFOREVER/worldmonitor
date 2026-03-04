@@ -13,9 +13,8 @@ const FULL_LAYOUTS: LayoutPreset[] = [
     labelKey: 'layouts.intelligenceAnalyst',
     icon: '🔍',
     panelKeys: [
-      'map', 'live-news', 'insights', 'strategic-posture', 'cii',
-      'strategic-risk', 'intel', 'gdelt-intel', 'cascade', 'telegram-intel',
-      'monitors', 'satellite-fires', 'displacement', 'oref-sirens',
+      'map', 'live-news', 'insights', 'intel', 'telegram-intel',
+      'displacement', 'oref-sirens',
     ],
   },
   {
@@ -33,7 +32,7 @@ const FULL_LAYOUTS: LayoutPreset[] = [
     labelKey: 'layouts.breakingNews',
     icon: '📰',
     panelKeys: [
-      'map', 'live-news', 'live-webcams', 'insights', 'politics', 'us',
+      'map', 'live-news', 'insights', 'politics', 'us',
       'europe', 'middleeast', 'africa', 'latam', 'asia',
     ],
   },
@@ -41,7 +40,7 @@ const FULL_LAYOUTS: LayoutPreset[] = [
     id: 'minimal',
     labelKey: 'layouts.minimal',
     icon: '◯',
-    panelKeys: ['map', 'live-news', 'insights', 'strategic-posture'],
+    panelKeys: ['map', 'live-news', 'insights'],
   },
 ];
 

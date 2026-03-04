@@ -9,15 +9,8 @@ import {
   CommoditiesPanel,
   CryptoPanel,
   PredictionPanel,
-  MonitorPanel,
   EconomicPanel,
-  GdeltIntelPanel,
   LiveNewsPanel,
-  LiveWebcamsPanel,
-  CIIPanel,
-  CascadePanel,
-  StrategicRiskPanel,
-  StrategicPosturePanel,
   TechEventsPanel,
   ServiceStatusPanel,
   RuntimeConfigPanel,
@@ -39,7 +32,6 @@ import {
   GulfEconomiesPanel,
   WorldClockPanel,
 } from '@/components';
-import { SatelliteFiresPanel } from '@/components/SatelliteFiresPanel';
 import { PositiveNewsFeedPanel } from '@/components/PositiveNewsFeedPanel';
 import { CountersPanel } from '@/components/CountersPanel';
 import { ProgressChartsPanel } from '@/components/ProgressChartsPanel';
@@ -291,14 +283,6 @@ export class PanelLayoutManager implements AppModule {
     const marketsPanel = new MarketPanel();
     this.ctx.panels['markets'] = marketsPanel;
 
-    const monitorPanel = new MonitorPanel(this.ctx.monitors);
-    this.ctx.panels['monitors'] = monitorPanel;
-    monitorPanel.onChanged((monitors) => {
-      this.ctx.monitors = monitors;
-      saveToStorage(STORAGE_KEYS.monitors, monitors);
-      this.callbacks.updateMonitorResults();
-    });
-
     const commoditiesPanel = new CommoditiesPanel();
     this.ctx.panels['commodities'] = commoditiesPanel;
 
@@ -322,11 +306,6 @@ export class PanelLayoutManager implements AppModule {
     this.attachRelatedAssetHandlers(middleeastPanel);
     this.ctx.newsPanels['middleeast'] = middleeastPanel;
     this.ctx.panels['middleeast'] = middleeastPanel;
-
-    const layoffsPanel = new NewsPanel('layoffs', t('panels.layoffs'));
-    this.attachRelatedAssetHandlers(layoffsPanel);
-    this.ctx.newsPanels['layoffs'] = layoffsPanel;
-    this.ctx.panels['layoffs'] = layoffsPanel;
 
     const aiPanel = new NewsPanel('ai', t('panels.ai'));
     this.attachRelatedAssetHandlers(aiPanel);
@@ -440,6 +419,7 @@ export class PanelLayoutManager implements AppModule {
     this.ctx.panels['energy'] = energyPanel;
 
     for (const key of Object.keys(FEEDS)) {
+      if (key === 'layoffs') continue;
       if (this.ctx.newsPanels[key]) continue;
       if (!Array.isArray((FEEDS as Record<string, unknown>)[key])) continue;
       const panelKey = this.ctx.panels[key] && !this.ctx.newsPanels[key] ? `${key}-news` : key;
@@ -453,9 +433,6 @@ export class PanelLayoutManager implements AppModule {
     }
 
     if (SITE_VARIANT === 'full') {
-      const gdeltIntelPanel = new GdeltIntelPanel();
-      this.ctx.panels['gdelt-intel'] = gdeltIntelPanel;
-
       if (this.ctx.isDesktopApp) {
         import('@/components/DeductionPanel').then(({ DeductionPanel }) => {
           const deductionPanel = new DeductionPanel(() => this.ctx.allNews);
@@ -464,40 +441,15 @@ export class PanelLayoutManager implements AppModule {
           this.makeDraggable(el, 'deduction');
           const grid = document.getElementById('panelsGrid');
           if (grid) {
-            const gdeltEl = this.ctx.panels['gdelt-intel']?.getElement();
-            if (gdeltEl?.nextSibling) {
-              grid.insertBefore(el, gdeltEl.nextSibling);
+            const anchorEl = this.ctx.panels['intel']?.getElement();
+            if (anchorEl?.nextSibling) {
+              grid.insertBefore(el, anchorEl.nextSibling);
             } else {
               grid.appendChild(el);
             }
           }
         });
       }
-
-      const ciiPanel = new CIIPanel();
-      ciiPanel.setShareStoryHandler((code, name) => {
-        this.callbacks.openCountryStory(code, name);
-      });
-      this.ctx.panels['cii'] = ciiPanel;
-
-      const cascadePanel = new CascadePanel();
-      this.ctx.panels['cascade'] = cascadePanel;
-
-      const satelliteFiresPanel = new SatelliteFiresPanel();
-      this.ctx.panels['satellite-fires'] = satelliteFiresPanel;
-
-      const strategicRiskPanel = new StrategicRiskPanel();
-      strategicRiskPanel.setLocationClickHandler((lat, lon) => {
-        this.ctx.map?.setCenter(lat, lon, 4);
-      });
-      this.ctx.panels['strategic-risk'] = strategicRiskPanel;
-
-      const strategicPosturePanel = new StrategicPosturePanel(() => this.ctx.allNews);
-      strategicPosturePanel.setLocationClickHandler((lat, lon) => {
-        console.log('[App] StrategicPosture handler called:', { lat, lon, hasMap: !!this.ctx.map });
-        this.ctx.map?.setCenter(lat, lon, 4);
-      });
-      this.ctx.panels['strategic-posture'] = strategicPosturePanel;
 
       const ucdpEventsPanel = new UcdpEventsPanel();
       ucdpEventsPanel.setEventClickHandler((lat, lon) => {
@@ -553,9 +505,6 @@ export class PanelLayoutManager implements AppModule {
 
       const liveNewsPanel = new LiveNewsPanel();
       this.ctx.panels['live-news'] = liveNewsPanel;
-
-      const liveWebcamsPanel = new LiveWebcamsPanel();
-      this.ctx.panels['live-webcams'] = liveWebcamsPanel;
 
       this.ctx.panels['events'] = new TechEventsPanel('events', () => this.ctx.allNews);
 
@@ -625,14 +574,8 @@ export class PanelLayoutManager implements AppModule {
       const valid = savedOrder.filter(k => defaultOrder.includes(k));
       const validBottom = isUltraWide ? savedBottomOrder.filter(k => defaultOrder.includes(k)) : [];
 
-      const monitorsIdx = valid.indexOf('monitors');
-      if (monitorsIdx !== -1) valid.splice(monitorsIdx, 1);
       const insertIdx = valid.indexOf('politics') + 1 || 0;
-      const newPanels = missing.filter(k => k !== 'monitors');
-      valid.splice(insertIdx, 0, ...newPanels);
-      if (SITE_VARIANT !== 'happy') {
-        valid.push('monitors');
-      }
+      valid.splice(insertIdx, 0, ...missing);
       panelOrder = valid;
 
       // Handle bottom panels
@@ -651,13 +594,6 @@ export class PanelLayoutManager implements AppModule {
       if (liveNewsIdx > 0) {
         panelOrder.splice(liveNewsIdx, 1);
         panelOrder.unshift('live-news');
-      }
-
-      const webcamsIdx = panelOrder.indexOf('live-webcams');
-      if (webcamsIdx !== -1 && webcamsIdx !== panelOrder.indexOf('live-news') + 1) {
-        panelOrder.splice(webcamsIdx, 1);
-        const afterNews = panelOrder.indexOf('live-news') + 1;
-        panelOrder.splice(afterNews, 0, 'live-webcams');
       }
     }
 
