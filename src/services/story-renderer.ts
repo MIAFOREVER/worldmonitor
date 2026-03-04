@@ -30,10 +30,10 @@ function humanizeSignalType(type: string): string {
 }
 
 const LEVEL_COLORS: Record<string, string> = {
-  critical: '#eb365a', high: '#f97316', elevated: '#eab308', normal: '#02c77b', low: '#3b82f6',
+  critical: '#e0345c', high: '#f97316', elevated: '#eab308', normal: '#02bd75', low: '#3b82f6',
 };
 const THREAT_COLORS: Record<string, string> = {
-  critical: '#eb365a', high: '#f97316', medium: '#eab308', low: '#02c77b', info: '#3b82f6',
+  critical: '#e0345c', high: '#f97316', medium: '#eab308', low: '#02bd75', info: '#3b82f6',
 };
 
 const LOGO_URL = '/favico/worldmonitor-icon-1024.png';
@@ -117,7 +117,7 @@ export async function renderStoryToCanvas(data: StoryData): Promise<HTMLCanvasEl
   if (data.cii?.change24h) {
     const ch = data.cii.change24h;
     const chSign = ch > 0 ? '+' : '';
-    ctx.fillStyle = ch > 0 ? '#eb365a' : ch < 0 ? '#02c77b' : '#888';
+    ctx.fillStyle = ch > 0 ? '#e0345c' : ch < 0 ? '#02bd75' : '#888';
     ctx.font = '600 28px Inter, system-ui, sans-serif';
     ctx.fillText(`${chSign}${ch} 24h`, PAD + scoreNumW + 4 + slashW + 16, y);
   }
@@ -163,7 +163,7 @@ export async function renderStoryToCanvas(data: StoryData): Promise<HTMLCanvasEl
     const comps = [
       { label: t('common.unrest').toUpperCase(), val: data.cii.components.unrest, color: '#f97316' },
       { label: t('common.conflict').toUpperCase(), val: data.cii.components.conflict, color: '#dc2626' },
-      { label: t('common.security').toUpperCase(), val: data.cii.components.security, color: '#eb365a' },
+      { label: t('common.security').toUpperCase(), val: data.cii.components.security, color: '#e0345c' },
       { label: t('common.information').toUpperCase(), val: data.cii.components.information, color: '#8b5cf6' },
     ];
     const compBarW = (barW - 24) / 3;
@@ -198,7 +198,7 @@ export async function renderStoryToCanvas(data: StoryData): Promise<HTMLCanvasEl
     y += 48;
     const sigItems = [
       { icon: '📢', label: 'Protests', count: data.signals.protests, color: '#f97316' },
-      { icon: '✈', label: 'Military Aircraft', count: data.signals.militaryFlights, color: '#eb365a' },
+      { icon: '✈', label: 'Military Aircraft', count: data.signals.militaryFlights, color: '#e0345c' },
       { icon: '⚓', label: 'Military Vessels', count: data.signals.militaryVessels, color: '#3b82f6' },
       { icon: '🌐', label: 'Internet Outages', count: data.signals.outages, color: '#8b5cf6' },
     ].filter(s => s.count > 0);
@@ -225,7 +225,7 @@ export async function renderStoryToCanvas(data: StoryData): Promise<HTMLCanvasEl
 
     y += 46;
     const convScore = Math.round(data.convergence.score);
-    const convColor = convScore >= 70 ? '#eb365a' : convScore >= 40 ? '#eab308' : '#02c77b';
+    const convColor = convScore >= 70 ? '#e0345c' : convScore >= 40 ? '#eab308' : '#02bd75';
     ctx.fillStyle = convColor;
     ctx.font = '800 48px Inter, system-ui, sans-serif';
     ctx.fillText(`${convScore}`, PAD, y);
@@ -309,8 +309,8 @@ export async function renderStoryToCanvas(data: StoryData): Promise<HTMLCanvasEl
     y += 46;
     drawSectionHeader(ctx, 'MILITARY POSTURE', PAD, y);
 
-    const postureColor = data.theater.postureLevel === 'critical' ? '#eb365a'
-      : data.theater.postureLevel === 'elevated' ? '#f97316' : '#02c77b';
+    const postureColor = data.theater.postureLevel === 'critical' ? '#e0345c'
+      : data.theater.postureLevel === 'elevated' ? '#f97316' : '#02bd75';
 
     y += 52;
     ctx.fillStyle = '#e0e0e0';
@@ -347,7 +347,7 @@ export async function renderStoryToCanvas(data: StoryData): Promise<HTMLCanvasEl
 
     if (data.theater.strikeCapable) {
       y += 40;
-      ctx.fillStyle = '#eb365a';
+      ctx.fillStyle = '#e0345c';
       ctx.font = '700 24px Inter, system-ui, sans-serif';
       ctx.fillText('⚠ STRIKE CAPABLE', PAD, y);
     }
@@ -368,7 +368,7 @@ export async function renderStoryToCanvas(data: StoryData): Promise<HTMLCanvasEl
 
       const pct = Math.round(m.yesPrice);
       const pctStr = `${pct}%`;
-      const pctColor = pct >= 70 ? '#eb365a' : pct >= 40 ? '#eab308' : '#02c77b';
+      const pctColor = pct >= 70 ? '#e0345c' : pct >= 40 ? '#eab308' : '#02bd75';
       ctx.fillStyle = pctColor;
       ctx.font = '700 28px Inter, system-ui, sans-serif';
       const pctW = ctx.measureText(pctStr).width;
@@ -386,7 +386,7 @@ export async function renderStoryToCanvas(data: StoryData): Promise<HTMLCanvasEl
 
     y += 48;
     const threatBars = [
-      { label: 'Critical', count: data.threats.critical, color: '#eb365a' },
+      { label: 'Critical', count: data.threats.critical, color: '#e0345c' },
       { label: 'High', count: data.threats.high, color: '#f97316' },
       { label: 'Medium', count: data.threats.medium, color: '#eab308' },
     ].filter(t => t.count > 0);

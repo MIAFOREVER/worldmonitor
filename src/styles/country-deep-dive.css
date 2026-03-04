@@ -638,7 +638,7 @@
 }
 
 .cdp-trend-token.trend-market-up {
-  color: var(--semantic-success, #02c77b);
+  color: var(--semantic-success, #02bd75);
 }
 
 .cdp-trend-token.trend-market-down {

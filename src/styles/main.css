@@ -53,8 +53,8 @@
   --map-grid: #0a2a20;
   --map-country: #0a2018;
   --map-stroke: #0f5040;
-  --theme-red-rgb: 235, 54, 90;
-  --theme-green-rgb: 2, 199, 123;
+  --theme-red-rgb: 224, 52, 92;
+  --theme-green-rgb: 2, 189, 117;
 
   /* Font stack */
   --font-mono: 'SF Mono', 'Monaco', 'Cascadia Code', 'Fira Code', 'DejaVu Sans Mono', 'Liberation Mono', monospace;

@@ -72,10 +72,10 @@ export class VerificationChecklist extends Component {
     const result = this.calculateResult();
 
     const verdictColors: Record<string, string> = {
-      verified: '#02c77b',
+      verified: '#02bd75',
       likely: '#84cc16',
       uncertain: '#eab308',
-      unreliable: '#eb365a',
+      unreliable: '#e0345c',
     };
 
     const verdictLabels: Record<string, string> = {

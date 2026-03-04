@@ -16,10 +16,10 @@ import { getCSSColor } from '@/utils';
 
 /** @deprecated Use getThreatColor() instead for runtime CSS variable reads */
 export const THREAT_COLORS: Record<ThreatLevel, string> = {
-  critical: '#eb365a',
+  critical: '#e0345c',
   high: '#f97316',
   medium: '#eab308',
-  low: '#02c77b',
+  low: '#02bd75',
   info: '#3b82f6',
 };
 

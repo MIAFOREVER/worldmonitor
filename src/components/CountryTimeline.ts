@@ -14,7 +14,7 @@ const LANES: TimelineEvent['lane'][] = ['protest', 'conflict', 'natural', 'milit
 
 const LANE_COLORS: Record<TimelineEvent['lane'], string> = {
   protest: '#ffaa00',
-  conflict: '#eb365a',
+  conflict: '#e0345c',
   natural: '#b478ff',
   military: '#64b4ff',
 };
