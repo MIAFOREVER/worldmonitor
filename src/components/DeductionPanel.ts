@@ -76,7 +76,7 @@ export class DeductionPanel extends Panel {
         .deduction-submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
         .deduction-result { flex: 1; margin-top: 8px; line-height: 1.5; font-size: 0.9em; color: var(--text-primary, #ddd); }
         .deduction-result.loading { opacity: 0.7; font-style: italic; }
-        .deduction-result.error { color: var(--semantic-critical, #ef4444); }
+        .deduction-result.error { color: var(--semantic-critical, #eb365a); }
         .deduction-result h3 { margin-top: 12px; margin-bottom: 4px; font-size: 1.1em; color: var(--text-bright, #fff); }
         .deduction-result ul { padding-left: 20px; margin-top: 4px; }
         .deduction-result li { margin-bottom: 4px; }

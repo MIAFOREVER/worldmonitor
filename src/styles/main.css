@@ -52,6 +52,8 @@
   --map-grid: #0a2a20;
   --map-country: #0a2018;
   --map-stroke: #0f5040;
+  --theme-red-rgb: 235, 54, 90;
+  --theme-green-rgb: 2, 199, 123;
 
   /* Font stack */
   --font-mono: 'SF Mono', 'Monaco', 'Cascadia Code', 'Fira Code', 'DejaVu Sans Mono', 'Liberation Mono', monospace;
@@ -72,19 +74,19 @@
    ============================================================ */
 :root {
   /* Severity levels */
-  --semantic-critical: #ff4444;
+  --semantic-critical: rgb(var(--theme-red-rgb));
   --semantic-high: #ff8800;
   --semantic-elevated: #ffaa00;
-  --semantic-normal: #44aa44;
+  --semantic-normal: rgb(var(--theme-green-rgb));
   --semantic-low: #3388ff;
   --semantic-info: #3b82f6;
-  --semantic-positive: #44ff88;
+  --semantic-positive: rgb(var(--theme-green-rgb));
 
   /* Threat levels */
-  --threat-critical: #ef4444;
+  --threat-critical: rgb(var(--theme-red-rgb));
   --threat-high: #f97316;
   --threat-medium: #eab308;
-  --threat-low: #22c55e;
+  --threat-low: rgb(var(--theme-green-rgb));
   --threat-info: #3b82f6;
 
   /* DEFCON levels */
@@ -95,13 +97,13 @@
   --defcon-5: #2d8a6e;
 
   /* Status indicators */
-  --status-live: #44ff88;
+  --status-live: rgb(var(--theme-green-rgb));
   --status-cached: #ffaa00;
-  --status-unavailable: #ff4444;
+  --status-unavailable: rgb(var(--theme-red-rgb));
 
   /* Legacy color aliases (used by existing var() references) */
-  --red: #ff4444;
-  --green: #44ff88;
+  --red: rgb(var(--theme-red-rgb));
+  --green: rgb(var(--theme-green-rgb));
   --yellow: #ffaa00;
 }
 
@@ -115,25 +117,25 @@
   /* Tailwind orange-600 (was #ff8800, 2.27:1) */
   --semantic-elevated: #d97706;
   /* Tailwind amber-600 (was #ffaa00, 1.81:1) */
-  --semantic-normal: #15803d;
+  --semantic-normal: rgb(var(--theme-green-rgb));
   /* Tailwind green-700 (was #44aa44, 2.81:1) */
-  --semantic-positive: #16a34a;
+  --semantic-positive: rgb(var(--theme-green-rgb));
   /* Tailwind green-600 (was #44ff88, too bright for light bg) */
   --threat-high: #c2410c;
   /* Tailwind orange-700 (was #f97316, 2.66:1) */
   --threat-medium: #ca8a04;
   /* Tailwind yellow-600 (was #eab308, 1.82:1) */
-  --threat-low: #15803d;
+  --threat-low: rgb(var(--theme-green-rgb));
   /* Tailwind green-700 (was #22c55e, 2.16:1) */
   --defcon-3: #d97706;
   /* Tailwind amber-600 (was #ffaa00, 1.81:1) */
   --defcon-4: #0284c7;
   /* Tailwind sky-600 (was #00aaff, 2.43:1) */
-  --status-live: #16a34a;
+  --status-live: rgb(var(--theme-green-rgb));
   /* Tailwind green-600 (was #44ff88, 1.25:1) */
   --status-cached: #d97706;
   /* Tailwind amber-600 (was #ffaa00, 1.81:1) */
-  --green: #16a34a;
+  --green: rgb(var(--theme-green-rgb));
   /* Tailwind green-600 (was #44ff88) */
   --yellow: #d97706;
   /* Tailwind amber-600 (was #ffaa00) */
@@ -2956,7 +2958,7 @@ body.live-news-fullscreen-active .panels-grid > *:not(.live-news-fullscreen) {
 
 .country-intel-share-btn {
   background: none;
-  border: 1px solid #ff444440;
+  border: 1px solid rgba(var(--theme-red-rgb), 0.25);
   color: var(--semantic-critical);
   font-size: 16px;
   cursor: pointer;
@@ -7019,7 +7021,7 @@ a.prediction-link:hover {
 }
 
 .mineral-marker.producing .mineral-icon {
-  filter: drop-shadow(0 0 6px var(--status-live)) drop-shadow(0 0 12px #44ff8860);
+  filter: drop-shadow(0 0 6px var(--status-live)) drop-shadow(0 0 12px rgba(var(--theme-green-rgb), 0.38));
 }
 
 .mineral-marker.developing .mineral-icon {
@@ -13950,7 +13952,7 @@ a.prediction-link:hover {
 }
 
 .ai-flow-switch input:checked+.ai-flow-slider {
-  background: #22c55e;
+  background: var(--green);
 }
 
 .ai-flow-switch input:checked+.ai-flow-slider::before {
@@ -14009,7 +14011,7 @@ a.prediction-link:hover {
 }
 
 .ai-flow-status-dot.active {
-  background: #22c55e;
+  background: var(--green);
 }
 
 .ai-flow-status-dot.browser-only {
@@ -14017,7 +14019,7 @@ a.prediction-link:hover {
 }
 
 .ai-flow-status-dot.disabled {
-  background: #ef4444;
+  background: var(--red);
 }
 
 .ai-flow-status-text {

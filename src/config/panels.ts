@@ -660,12 +660,12 @@ export const PANEL_CATEGORY_MAP: Record<string, { labelKey: string; panelKeys: s
 
 // Monitor palette — fixed category colors persisted to localStorage (not theme-dependent)
 export const MONITOR_COLORS = [
-  '#44ff88',
+  '#02c77b',
   '#ff8844',
   '#4488ff',
   '#ff44ff',
   '#ffff44',
-  '#ff4444',
+  '#eb365a',
   '#44ffff',
   '#88ff44',
   '#ff88ff',
