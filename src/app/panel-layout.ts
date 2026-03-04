@@ -8,18 +8,15 @@ import {
   HeatmapPanel,
   CommoditiesPanel,
   PredictionPanel,
-  EconomicPanel,
   LiveNewsPanel,
   TechEventsPanel,
   ServiceStatusPanel,
   RuntimeConfigPanel,
-  InsightsPanel,
   TechReadinessPanel,
   MacroSignalsPanel,
   ETFFlowsPanel,
   StablecoinPanel,
   InvestmentsPanel,
-  TradePolicyPanel,
   SupplyChainPanel,
   GulfEconomiesPanel,
   WorldClockPanel,
@@ -54,7 +51,6 @@ const PRIORITY_PANEL_KEYS = [
   'polymarket',
   'politics',
   'thinktanks',
-  'economic',
 ] as const;
 
 export interface PanelLayoutCallbacks {
@@ -385,13 +381,7 @@ export class PanelLayoutManager implements AppModule {
     this.ctx.newsPanels['thinktanks'] = thinktanksPanel;
     this.ctx.panels['thinktanks'] = thinktanksPanel;
 
-    const economicPanel = new EconomicPanel();
-    this.ctx.panels['economic'] = economicPanel;
-
     if (SITE_VARIANT === 'full' || SITE_VARIANT === 'finance') {
-      const tradePolicyPanel = new TradePolicyPanel();
-      this.ctx.panels['trade-policy'] = tradePolicyPanel;
-
       const supplyChainPanel = new SupplyChainPanel();
       this.ctx.panels['supply-chain'] = supplyChainPanel;
     }
@@ -490,9 +480,6 @@ export class PanelLayoutManager implements AppModule {
       const runtimeConfigPanel = new RuntimeConfigPanel({ mode: 'alert' });
       this.ctx.panels['runtime-config'] = runtimeConfigPanel;
     }
-
-    const insightsPanel = new InsightsPanel();
-    this.ctx.panels['insights'] = insightsPanel;
 
     // Global Giving panel (all variants)
     this.ctx.panels['giving'] = new GivingPanel();
