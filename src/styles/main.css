@@ -53,6 +53,7 @@
   --map-grid: #0a2a20;
   --map-country: #0a2018;
   --map-stroke: #0f5040;
+  --map-selection-rgb: 85, 195, 233;
   --theme-red-rgb: 224, 52, 92;
   --theme-green-rgb: 2, 189, 117;
 
@@ -12761,13 +12762,13 @@ a.prediction-link:hover {
 }
 
 .deckgl-time-slider .time-btn:hover {
-  border-color: var(--green);
-  color: var(--green);
+  border-color: rgb(var(--map-selection-rgb));
+  color: rgb(var(--map-selection-rgb));
 }
 
 .deckgl-time-slider .time-btn.active {
-  background: var(--green);
-  border-color: var(--green);
+  background: rgb(var(--map-selection-rgb));
+  border-color: rgb(var(--map-selection-rgb));
   color: var(--bg);
   font-weight: bold;
 }
@@ -12877,8 +12878,8 @@ a.prediction-link:hover {
 }
 
 .deckgl-layer-toggles .layer-toggle input[type="checkbox"]:checked {
-  background: var(--green);
-  border-color: var(--green);
+  background: rgb(var(--map-selection-rgb));
+  border-color: rgb(var(--map-selection-rgb));
 }
 
 .deckgl-layer-toggles .layer-toggle input[type="checkbox"]:checked::after {
@@ -12921,11 +12922,11 @@ a.prediction-link:hover {
 }
 
 .deckgl-layer-toggles .layer-toggle.has-data .toggle-label {
-  color: var(--green);
+  color: rgb(var(--map-selection-rgb));
 }
 
 .deckgl-layer-toggles .layer-toggle.has-data {
-  border-color: rgba(68, 255, 136, 0.2);
+  border-color: rgba(var(--map-selection-rgb), 0.2);
 }
 
 /* deck.gl Legend - horizontal bar at bottom center */
