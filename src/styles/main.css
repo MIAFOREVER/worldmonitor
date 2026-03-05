@@ -5588,14 +5588,15 @@ a.prediction-link:hover {
 
 .prediction-bar {
   height: 24px;
-  background: var(--border);
+  background: var(--overlay-subtle);
+  border: 1px solid var(--overlay-medium);
   border-radius: 3px;
   overflow: hidden;
   display: flex;
 }
 
 .prediction-yes {
-  background: var(--green);
+  background: rgba(var(--theme-green-rgb), 0.25);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -5604,7 +5605,7 @@ a.prediction-link:hover {
 }
 
 .prediction-no {
-  background: var(--red);
+  background: rgba(var(--theme-red-rgb), 0.25);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -5614,9 +5615,8 @@ a.prediction-link:hover {
 
 .prediction-label {
   font-size: 10px;
-  font-weight: bold;
-  color: var(--bg);
-  text-shadow: 0 0 2px var(--overlay-heavy);
+  font-weight: 500;
+  color: var(--text);
   white-space: nowrap;
   padding: 0 4px;
 }
