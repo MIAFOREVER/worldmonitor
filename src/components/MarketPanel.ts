@@ -24,7 +24,10 @@ export class MarketPanel extends Panel {
       <div class="market-item">
         <div class="market-info">
           <span class="market-name">${escapeHtml(stock.name)}</span>
-          <span class="market-symbol">${escapeHtml(stock.display)}</span>
+          <div class="market-symbol-row">
+            <span class="market-symbol">${escapeHtml(stock.display)}</span>
+            ${this.renderStockTradeNowLink(stock.symbol)}
+          </div>
         </div>
         <div class="market-data">
           ${miniSparkline(stock.sparkline, stock.change)}
@@ -37,6 +40,13 @@ export class MarketPanel extends Panel {
       .join('');
 
     this.setContent(html);
+  }
+
+  private renderStockTradeNowLink(symbol: string): string {
+    const normalized = symbol.toUpperCase().replace(/[^A-Z0-9]/g, '');
+    if (!normalized) return '';
+    const url = `https://app.pacifica.fi/trade/${encodeURIComponent(normalized)}`;
+    return `<a class="market-trade-now" href="${url}" target="_blank" rel="noopener noreferrer">Trade Now</a>`;
   }
 }
 

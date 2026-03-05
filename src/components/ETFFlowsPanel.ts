@@ -32,6 +32,16 @@ export class ETFFlowsPanel extends Panel {
   private error: string | null = null;
   constructor() {
     super({ id: 'etf-flows', title: t('panels.etfFlows'), showCount: false });
+    const headerLeft = this.header.querySelector('.panel-header-left');
+    if (headerLeft) {
+      const tradeNow = document.createElement('a');
+      tradeNow.className = 'panel-trade-now-link';
+      tradeNow.href = 'https://app.pacifica.fi/trade/BTC';
+      tradeNow.target = '_blank';
+      tradeNow.rel = 'noopener noreferrer';
+      tradeNow.textContent = 'Trade Now';
+      headerLeft.appendChild(tradeNow);
+    }
     // Delay initial fetch by 8s to avoid competing with stock/commodity Yahoo calls
     // during cold start — all share a global yahooGate() rate limiter on the sidecar
     setTimeout(() => void this.fetchData(), 8_000);
