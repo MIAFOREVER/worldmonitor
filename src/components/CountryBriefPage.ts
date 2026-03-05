@@ -676,7 +676,7 @@ export class CountryBriefPage implements CountryBriefPanel {
           .cb-badge, .cb-trend { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
           canvas { max-width: 100% !important; }
         }
-        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, system-ui, sans-serif; }
         .country-brief-overlay { position: static !important; background: none !important; }
       </style>
     </head><body>${header ? header.outerHTML : ''}${content.outerHTML}</body></html>`);
