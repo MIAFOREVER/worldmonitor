@@ -1758,7 +1758,7 @@ body.panel-resize-active iframe {
 .live-channel-btn.active {
   background: rgb(var(--map-selection-rgb));
   border-color: rgb(var(--map-selection-rgb));
-  color: white;
+  color: var(--bg);
 }
 
 .live-channel-btn.loading {
