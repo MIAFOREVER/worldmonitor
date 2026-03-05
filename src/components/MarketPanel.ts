@@ -45,6 +45,8 @@ export class MarketPanel extends Panel {
   private renderStockTradeNowLink(symbol: string): string {
     const normalized = symbol.toUpperCase().replace(/[^A-Z0-9]/g, '');
     if (!normalized) return '';
+    const allowedSymbols = new Set(['TSLA', 'NVDA', 'PLTR', 'GOOGL']);
+    if (!allowedSymbols.has(normalized)) return '';
     const url = `https://app.pacifica.fi/trade/${encodeURIComponent(normalized)}`;
     return `<a class="market-trade-now" href="${url}" target="_blank" rel="noopener noreferrer">Trade Now</a>`;
   }
