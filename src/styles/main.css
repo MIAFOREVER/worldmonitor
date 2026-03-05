@@ -5484,6 +5484,7 @@ body.playback-mode .status-dot {
   background: var(--border);
   padding: 8px;
   border-radius: 2px;
+  position: relative;
 }
 
 .commodity-name {
@@ -5519,12 +5520,14 @@ body.playback-mode .status-dot {
 .commodity-footer {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 8px;
+  justify-content: flex-start;
   margin-top: 2px;
 }
 
 .commodity-trade-now {
+  position: absolute;
+  top: 8px;
+  right: 8px;
   font-size: 9px;
   line-height: 1;
   color: rgb(var(--map-selection-rgb));
