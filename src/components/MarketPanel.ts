@@ -93,7 +93,10 @@ export class CommoditiesPanel extends Panel {
           <div class="commodity-name">${escapeHtml(c.display)}</div>
           ${miniSparkline(c.sparkline, c.change, 60, 18)}
           <div class="commodity-price">${formatPrice(c.price!)}</div>
-          <div class="commodity-change ${getChangeClass(c.change!)}">${formatChange(c.change!)}</div>
+          <div class="commodity-footer">
+            <div class="commodity-change ${getChangeClass(c.change!)}">${formatChange(c.change!)}</div>
+            ${this.renderTradeNowLink(c.display)}
+          </div>
         </div>
       `
         )
@@ -101,6 +104,20 @@ export class CommoditiesPanel extends Panel {
       '</div>';
 
     this.setContent(html);
+  }
+
+  private renderTradeNowLink(display: string): string {
+    const symbolMap: Record<string, string> = {
+      GOLD: 'GOLD',
+      OIL: 'CL',
+      NATGAS: 'NATGAS',
+      SILVER: 'SILVER',
+      COPPER: 'COPPER',
+    };
+    const symbol = symbolMap[display.toUpperCase()];
+    if (!symbol) return '';
+    const url = `https://app.pacifica.fi/trade/${encodeURIComponent(symbol)}`;
+    return `<a class="commodity-trade-now" href="${url}" target="_blank" rel="noopener noreferrer">Trade Now</a>`;
   }
 }
 

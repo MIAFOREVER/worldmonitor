@@ -5474,6 +5474,32 @@ body.playback-mode .status-dot {
   opacity: 0.8;
 }
 
+.commodity-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 2px;
+}
+
+.commodity-trade-now {
+  font-size: 9px;
+  line-height: 1;
+  color: rgb(var(--map-selection-rgb));
+  text-decoration: none;
+  border: 1px solid rgba(var(--map-selection-rgb), 0.55);
+  border-radius: 3px;
+  padding: 2px 6px;
+  background: rgba(var(--map-selection-rgb), 0.12);
+  white-space: nowrap;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.commodity-trade-now:hover {
+  background: rgba(var(--map-selection-rgb), 0.2);
+  border-color: rgba(var(--map-selection-rgb), 0.8);
+}
+
 /* Predictions */
 .prediction-item {
   padding: 10px 0;
