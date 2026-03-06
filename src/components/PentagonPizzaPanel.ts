@@ -31,8 +31,17 @@ interface PizzaApiResponse {
   };
 }
 
-const API_BASE_URL = 'https://www.pizzint.watch/api/dashboard-data';
+const API_ENDPOINTS = [
+  '/api/pizzint-dashboard',
+  '/api/pizzint/dashboard-data',
+  'https://www.pizzint.watch/api/dashboard-data',
+];
 const REFRESH_INTERVAL_MS = 5 * 60 * 1000;
+
+function buildRequestUrl(baseUrl: string): string {
+  const separator = baseUrl.includes('?') ? '&' : '?';
+  return `${baseUrl}${separator}_t=${Date.now()}`;
+}
 
 function toNumber(value: unknown): number | null {
   if (typeof value !== 'number' || Number.isNaN(value)) return null;
@@ -99,17 +108,34 @@ export class PentagonPizzaPanel extends Panel {
     if (this.requestInFlight) return;
     this.requestInFlight = true;
     try {
-      const response = await fetch(`${API_BASE_URL}?_t=${Date.now()}`, { cache: 'no-store' });
-      if (!response.ok) {
-        throw new Error(`HTTP ${response.status}`);
+      let payload: Partial<PizzaApiResponse> | null = null;
+      let lastError: Error | null = null;
+
+      for (const endpoint of API_ENDPOINTS) {
+        try {
+          const response = await fetch(buildRequestUrl(endpoint), { cache: 'no-store' });
+          if (!response.ok) {
+            throw new Error(`HTTP ${response.status}`);
+          }
+          const json = await response.json() as Partial<PizzaApiResponse>;
+          if (!json.success || !Array.isArray(json.data)) {
+            throw new Error('Invalid PizzINT response');
+          }
+          payload = json;
+          break;
+        } catch (error) {
+          lastError = error instanceof Error ? error : new Error('Request failed');
+        }
       }
-      const payload = await response.json() as Partial<PizzaApiResponse>;
-      if (!payload.success || !Array.isArray(payload.data)) {
-        throw new Error('Invalid PizzINT response');
+
+      if (!payload) {
+        throw lastError || new Error('No available PizzINT endpoint');
       }
-      this.data = {
+
+      const places = Array.isArray(payload.data) ? payload.data : [];
+      const nextData: PizzaApiResponse = {
         success: true,
-        data: payload.data,
+        data: places,
         overall_index: typeof payload.overall_index === 'number' ? payload.overall_index : 0,
         defcon_level: typeof payload.defcon_level === 'number' ? payload.defcon_level : 5,
         active_spikes: typeof payload.active_spikes === 'number' ? payload.active_spikes : 0,
@@ -117,9 +143,10 @@ export class PentagonPizzaPanel extends Panel {
         data_freshness: typeof payload.data_freshness === 'string' ? payload.data_freshness : 'unknown',
         defcon_details: payload.defcon_details,
       };
+      this.data = nextData;
       this.error = null;
       this.loading = false;
-      this.setCount(this.data.data.length);
+      this.setCount(nextData.data.length);
       this.renderPanel();
     } catch (error) {
       this.loading = false;
