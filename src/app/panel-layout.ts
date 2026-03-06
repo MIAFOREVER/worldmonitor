@@ -101,12 +101,20 @@ export class PanelLayoutManager implements AppModule {
   }
 
   renderLayout(): void {
+    const mapTitle = this.ctx.isMobile && SITE_VARIANT !== 'tech' && SITE_VARIANT !== 'happy'
+      ? 'GLOBAL'
+      : SITE_VARIANT === 'tech'
+        ? t('panels.techMap')
+        : SITE_VARIANT === 'happy'
+          ? 'Good News Map'
+          : t('panels.map');
+
     this.ctx.container.innerHTML = `
       <div class="main-content">
         <div class="map-section" id="mapSection">
           <div class="panel-header">
             <div class="panel-header-left">
-              <span class="panel-title">${SITE_VARIANT === 'tech' ? t('panels.techMap') : SITE_VARIANT === 'happy' ? 'Good News Map' : t('panels.map')}</span>
+              <span class="panel-title">${mapTitle}</span>
             </div>
             <span class="header-clock" id="headerClock"></span>
             <div style="display:flex;align-items:center;gap:2px">
@@ -142,7 +150,7 @@ export class PanelLayoutManager implements AppModule {
     if (!mapSection || !headerLeft) return;
 
     const stored = localStorage.getItem('mobile-map-collapsed');
-    const collapsed = stored === null || stored === 'true';
+    const collapsed = stored === 'true';
     if (collapsed) mapSection.classList.add('collapsed');
 
     const updateBtn = (btn: HTMLButtonElement, isCollapsed: boolean) => {

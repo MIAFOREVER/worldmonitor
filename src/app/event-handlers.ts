@@ -518,9 +518,9 @@ export class EventHandlerManager implements AppModule {
 
   setupMobileWarning(): void {
     if (MobileWarningModal.shouldShow()) {
-      this.ctx.mobileWarningModal = new MobileWarningModal();
-      this.ctx.mobileWarningModal.show();
+      localStorage.setItem('mobile-warning-dismissed', 'true');
     }
+    this.ctx.mobileWarningModal = null;
   }
 
   setupStatusPanel(): void {
