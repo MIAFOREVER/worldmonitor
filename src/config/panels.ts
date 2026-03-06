@@ -29,6 +29,7 @@ const FULL_PANELS: Record<string, PanelConfig> = {
   africa: { name: 'Africa', enabled: true, priority: 1 },
   latam: { name: 'Latin America', enabled: true, priority: 1 },
   energy: { name: 'Energy & Resources', enabled: true, priority: 1 },
+  'pentagon-pizza': { name: 'Pentagon Pizza Index', enabled: true, priority: 2 },
   'supply-chain': { name: 'Supply Chain', enabled: true, priority: 1 },
   finance: { name: 'Financial', enabled: true, priority: 1 },
   tech: { name: 'Technology', enabled: true, priority: 2 },
@@ -576,7 +577,7 @@ export const PANEL_CATEGORY_MAP: Record<string, { labelKey: string; panelKeys: s
   },
   marketsFinance: {
     labelKey: 'header.panelCatMarketsFinance',
-    panelKeys: ['commodities', 'markets', 'economic', 'trade-policy', 'supply-chain', 'finance', 'polymarket', 'macro-signals', 'gulf-economies', 'etf-flows', 'stablecoins', 'heatmap'],
+    panelKeys: ['commodities', 'markets', 'economic', 'trade-policy', 'supply-chain', 'finance', 'polymarket', 'macro-signals', 'pentagon-pizza', 'gulf-economies', 'etf-flows', 'stablecoins', 'heatmap'],
     variants: ['full'],
   },
   topical: {

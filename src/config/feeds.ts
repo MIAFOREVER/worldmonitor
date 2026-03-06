@@ -19,6 +19,9 @@ export const SOURCE_TIERS: Record<string, number> = {
   'AP News': 1,
   'AFP': 1,
   'Bloomberg': 1,
+  'Pentagon Pizza Tracker': 3,
+  'Oil Long Positioning': 3,
+  'Metals Risk Gauge': 3,
 
   // Tier 2 - Major Outlets
   'BBC World': 2,
@@ -347,7 +350,8 @@ export const SOURCE_TYPES: Record<string, SourceType> = {
 
   // Market/Finance
   'CNBC': 'market', 'MarketWatch': 'market', 'Yahoo Finance': 'market',
-  'Financial Times': 'market',
+  'Financial Times': 'market', 'Oil Long Positioning': 'market', 'Metals Risk Gauge': 'market',
+  'Pentagon Pizza Tracker': 'intel',
 
   // Tech
   'Hacker News': 'tech', 'Ars Technica': 'tech', 'The Verge': 'tech',
@@ -715,6 +719,11 @@ const FULL_FEEDS: Record<string, Feed[]> = {
     { name: 'Reuters Energy', url: rss('https://news.google.com/rss/search?q=site:reuters.com+(oil+OR+gas+OR+energy+OR+OPEC)+when:3d&hl=en-US&gl=US&ceid=US:en') },
     { name: 'Mining & Resources', url: rss('https://news.google.com/rss/search?q=(lithium+OR+"rare+earth"+OR+cobalt+OR+mining)+when:3d&hl=en-US&gl=US&ceid=US:en') },
   ],
+  'pentagon-pizza': [
+    { name: 'Pentagon Pizza Tracker', url: rss('https://news.google.com/rss/search?q=("Pentagon+Pizza+Index"+OR+"pizza+near+Pentagon"+OR+"Arlington+pizza+orders"+OR+"Washington+late+night+pizza")+when:3d&hl=en-US&gl=US&ceid=US:en') },
+    { name: 'Oil Long Positioning', url: rss('https://news.google.com/rss/search?q=("CFTC+crude+oil+net+longs"+OR+"WTI+net+long+position"+OR+"Brent+speculative+longs"+OR+"Commitment+of+Traders+crude")+when:7d&hl=en-US&gl=US&ceid=US:en') },
+    { name: 'Metals Risk Gauge', url: rss('https://news.google.com/rss/search?q=("metals+index"+OR+"Bloomberg+Metals+Index"+OR+"LME+Index"+OR+"precious+metals+index"+OR+"base+metals+index")+when:7d&hl=en-US&gl=US&ceid=US:en') },
+  ],
 };
 
 // Tech/AI variant feeds
@@ -1080,7 +1089,7 @@ export const SOURCE_REGION_MAP: Record<string, { labelKey: string; feedKeys: str
   africa: { labelKey: 'header.sourceRegionAfrica', feedKeys: ['africa'] },
   latam: { labelKey: 'header.sourceRegionLatAm', feedKeys: ['latam'] },
   asia: { labelKey: 'header.sourceRegionAsiaPacific', feedKeys: ['asia'] },
-  topical: { labelKey: 'header.sourceRegionTopical', feedKeys: ['energy', 'tech', 'ai', 'finance', 'layoffs', 'thinktanks'] },
+  topical: { labelKey: 'header.sourceRegionTopical', feedKeys: ['energy', 'pentagon-pizza', 'tech', 'ai', 'finance', 'layoffs', 'thinktanks'] },
   intel: { labelKey: 'header.sourceRegionIntel', feedKeys: [] },
 
   // Tech variant regions
@@ -1172,6 +1181,7 @@ export const DEFAULT_ENABLED_SOURCES: Record<string, string[]> = {
   thinktanks: ['Foreign Policy', 'Atlantic Council', 'Foreign Affairs', 'CSIS', 'RAND', 'Brookings', 'Carnegie', 'War on the Rocks'],
   crisis: ['CrisisWatch', 'IAEA', 'WHO', 'UNHCR'],
   energy: ['Oil & Gas', 'Nuclear Energy', 'Reuters Energy', 'Mining & Resources'],
+  'pentagon-pizza': ['Pentagon Pizza Tracker', 'Oil Long Positioning', 'Metals Risk Gauge'],
 };
 
 export const DEFAULT_ENABLED_INTEL: string[] = [

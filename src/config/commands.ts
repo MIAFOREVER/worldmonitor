@@ -74,6 +74,7 @@ export const COMMANDS: Command[] = [
   { id: 'panel:latam', keywords: ['latin america news', 'latam news'], label: 'Panel: Latin America', icon: '\u{1F30E}', category: 'panels' },
   { id: 'panel:asia', keywords: ['asia news', 'asia-pacific news'], label: 'Panel: Asia-Pacific', icon: '\u{1F30F}', category: 'panels' },
   { id: 'panel:energy', keywords: ['energy', 'resources', 'oil news'], label: 'Panel: Energy & Resources', icon: '\u26A1', category: 'panels' },
+  { id: 'panel:pentagon-pizza', keywords: ['pentagon pizza', 'pizza index', 'oil longs', 'metals index'], label: 'Panel: Pentagon Pizza Index', icon: '\u{1F355}', category: 'panels' },
   { id: 'panel:gov', keywords: ['government', 'gov'], label: 'Panel: Government', icon: '\u{1F3DB}\uFE0F', category: 'panels' },
   { id: 'panel:thinktanks', keywords: ['think tanks', 'thinktanks', 'analysis'], label: 'Panel: Think Tanks', icon: '\u{1F9E0}', category: 'panels' },
   { id: 'panel:polymarket', keywords: ['predictions', 'polymarket', 'forecasts'], label: 'Panel: Predictions', icon: '\u{1F52E}', category: 'panels' },
