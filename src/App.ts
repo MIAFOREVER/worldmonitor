@@ -165,6 +165,52 @@ export class App {
           localStorage.setItem(TECH_INSIGHTS_MIGRATION_KEY, 'done');
         }
       }
+
+      if (currentVariant === 'full') {
+        const FULL_PANEL_ORDER_MIGRATION_KEY = 'worldmonitor-full-panel-order-v2.6';
+        if (!localStorage.getItem(FULL_PANEL_ORDER_MIGRATION_KEY)) {
+          const savedOrder = localStorage.getItem(PANEL_ORDER_KEY);
+          if (savedOrder) {
+            try {
+              const order: string[] = JSON.parse(savedOrder);
+              const preferredOrder = [
+                'live-news',
+                'etf-flows',
+                'stablecoins',
+                'commodities',
+                'markets',
+                'polymarket',
+                'world-clock',
+                'heatmap',
+                'macro-signals',
+                'politics',
+                'gov',
+                'thinktanks',
+                'intel',
+                'us',
+                'asia',
+                'europe',
+                'middleeast',
+                'africa',
+                'latam',
+                'energy',
+                'supply-chain',
+                'finance',
+                'tech',
+                'ai',
+                'gulf-economies',
+                'giving',
+              ];
+              const preferred = preferredOrder.filter((key) => order.includes(key));
+              const preferredSet = new Set(preferred);
+              const rest = order.filter((key) => !preferredSet.has(key));
+              localStorage.setItem(PANEL_ORDER_KEY, JSON.stringify([...preferred, ...rest]));
+            } catch {
+            }
+          }
+          localStorage.setItem(FULL_PANEL_ORDER_MIGRATION_KEY, 'done');
+        }
+      }
     }
 
     // One-time migration: clear stale panel ordering and sizing state
