@@ -8,6 +8,8 @@ import { miniSparkline } from '@/utils/sparkline';
 
 
 export class MarketPanel extends Panel {
+  private static readonly TRADE_NOW_SYMBOLS = new Set(['TSLA', 'NVDA', 'PLTR', 'GOOGL']);
+
   constructor() {
     super({ id: 'markets', title: t('panels.markets') });
   }
@@ -18,19 +20,23 @@ export class MarketPanel extends Panel {
       return;
     }
 
-    const html = data
+    const sortedData = [...data].sort((a, b) => {
+      const aTrade = this.hasStockTradeNow(a.symbol) ? 1 : 0;
+      const bTrade = this.hasStockTradeNow(b.symbol) ? 1 : 0;
+      return bTrade - aTrade;
+    });
+
+    const html = sortedData
       .map(
         (stock) => `
       <div class="market-item">
         <div class="market-info">
           <span class="market-name">${escapeHtml(stock.name)}</span>
-          <div class="market-symbol-row">
-            <span class="market-symbol">${escapeHtml(stock.display)}</span>
-            ${this.renderStockTradeNowLink(stock.symbol)}
-          </div>
+          <span class="market-symbol">${escapeHtml(stock.display)}</span>
         </div>
         <div class="market-data">
           ${miniSparkline(stock.sparkline, stock.change)}
+          ${this.renderStockTradeNowLink(stock.symbol)}
           <span class="market-price">${formatPrice(stock.price!)}</span>
           <span class="market-change ${getChangeClass(stock.change!)}">${formatChange(stock.change!)}</span>
         </div>
@@ -45,10 +51,14 @@ export class MarketPanel extends Panel {
   private renderStockTradeNowLink(symbol: string): string {
     const normalized = symbol.toUpperCase().replace(/[^A-Z0-9]/g, '');
     if (!normalized) return '';
-    const allowedSymbols = new Set(['TSLA', 'NVDA', 'PLTR', 'GOOGL']);
-    if (!allowedSymbols.has(normalized)) return '';
+    if (!this.hasStockTradeNow(normalized)) return '';
     const url = `https://app.pacifica.fi/trade/${encodeURIComponent(normalized)}`;
     return `<a class="market-trade-now" href="${url}" target="_blank" rel="noopener noreferrer">Trade Now</a>`;
+  }
+
+  private hasStockTradeNow(symbol: string): boolean {
+    const normalized = symbol.toUpperCase().replace(/[^A-Z0-9]/g, '');
+    return MarketPanel.TRADE_NOW_SYMBOLS.has(normalized);
   }
 }
 
