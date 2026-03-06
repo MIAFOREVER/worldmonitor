@@ -1550,3 +1550,153 @@
   height: 100%;
   min-height: 150px;
 }
+
+.pizza-panel-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  height: 100%;
+}
+
+.pizza-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 6px;
+}
+
+.pizza-summary-card {
+  background: color-mix(in srgb, var(--accent) 8%, transparent);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 7px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.pizza-summary-label {
+  font-size: 10px;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.pizza-summary-value {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.1;
+}
+
+.pizza-defcon-1 { color: var(--semantic-critical); }
+.pizza-defcon-2 { color: var(--semantic-high); }
+.pizza-defcon-3 { color: var(--semantic-medium); }
+.pizza-defcon-4 { color: var(--semantic-low); }
+.pizza-defcon-5 { color: var(--semantic-positive); }
+
+.pizza-meta-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  color: var(--text-dim);
+  font-size: 10px;
+}
+
+.pizza-places-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  overflow-y: auto;
+  min-height: 0;
+  padding-right: 2px;
+}
+
+.pizza-place-row {
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  padding: 6px 8px;
+  background: color-mix(in srgb, var(--surface) 80%, transparent);
+}
+
+.pizza-place-main {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+.pizza-place-name {
+  color: var(--text);
+  font-size: 12px;
+  font-weight: 600;
+  text-decoration: none;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.pizza-place-name:hover {
+  color: var(--accent);
+}
+
+.pizza-place-status {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 6px;
+  white-space: nowrap;
+}
+
+.pizza-status-spike {
+  background: color-mix(in srgb, var(--semantic-critical) 24%, transparent);
+  color: var(--semantic-critical);
+}
+
+.pizza-status-high {
+  background: color-mix(in srgb, var(--semantic-high) 24%, transparent);
+  color: var(--semantic-high);
+}
+
+.pizza-status-elevated {
+  background: color-mix(in srgb, var(--semantic-medium) 24%, transparent);
+  color: var(--semantic-medium);
+}
+
+.pizza-status-normal {
+  background: color-mix(in srgb, var(--semantic-positive) 24%, transparent);
+  color: var(--semantic-positive);
+}
+
+.pizza-status-closed {
+  background: color-mix(in srgb, var(--text-dim) 24%, transparent);
+  color: var(--text-dim);
+}
+
+.pizza-place-sub {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  margin-top: 5px;
+}
+
+.pizza-place-usual {
+  font-size: 10px;
+  color: var(--text-dim);
+  white-space: nowrap;
+}
+
+.pizza-sparkline {
+  width: 90px;
+  height: 22px;
+  flex-shrink: 0;
+}
+
+.pizza-sparkline path {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0.9;
+}

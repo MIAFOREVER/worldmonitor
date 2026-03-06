@@ -20,6 +20,7 @@ import {
   SupplyChainPanel,
   GulfEconomiesPanel,
   WorldClockPanel,
+  PentagonPizzaPanel,
 } from '@/components';
 import { PositiveNewsFeedPanel } from '@/components/PositiveNewsFeedPanel';
 import { CountersPanel } from '@/components/CountersPanel';
@@ -415,6 +416,10 @@ export class PanelLayoutManager implements AppModule {
     this.attachRelatedAssetHandlers(energyPanel);
     this.ctx.newsPanels['energy'] = energyPanel;
     this.ctx.panels['energy'] = energyPanel;
+
+    if (SITE_VARIANT === 'full') {
+      this.ctx.panels['pentagon-pizza'] = new PentagonPizzaPanel();
+    }
 
     for (const key of Object.keys(FEEDS)) {
       if (key === 'layoffs') continue;
