@@ -48,6 +48,7 @@ const PRIORITY_PANEL_KEYS = [
   'etf-flows',
   'stablecoins',
   'commodities',
+  'markets',
   'polymarket',
   'politics',
   'thinktanks',
