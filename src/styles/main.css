@@ -14210,8 +14210,22 @@ a.prediction-link:hover {
   font-size: 12px;
 }
 
+.banner-trade-now {
+  background: var(--overlay-heavy);
+  border: none;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+}
+
 .banner-view:hover,
-.banner-dismiss:hover {
+.banner-dismiss:hover,
+.banner-trade-now:hover {
   background: var(--overlay-heavy);
 }
 

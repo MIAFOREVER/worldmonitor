@@ -210,6 +210,7 @@ export class PanelLayoutManager implements AppModule {
         ${top.strikeCapable ? '<span class="banner-strike">STRIKE CAPABLE</span>' : ''}
       </div>
       <button class="banner-view" data-lat="${top.centerLat}" data-lon="${top.centerLon}">View Region</button>
+      <a class="banner-trade-now" href="https://app.pacifica.fi/trade/BTC" target="_blank" rel="noopener noreferrer">Trade Now</a>
       <button class="banner-dismiss">×</button>
     `;
 
